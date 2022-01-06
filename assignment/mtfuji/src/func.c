@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/func.h"
+#include "func.h"
 
 double f_gradient(Location* L, const int n, Param p,
                   double (*calc)(double, double, Param)) {
-  double a = p.a;
-  double b = p.b;
   double res = 0;
   for (int i = 0; i < n; i++) {
     double x = (L + i)->altitude;

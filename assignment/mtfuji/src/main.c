@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include "../include/func.h"
+#include <math.h>
+#include "func.h"
 
 int main() {
   FILE *fp;
-  fp = fopen("data.csv", "r");
+  fp = fopen("src/data.csv", "r");
   if (fp == NULL) {
     printf("file dose not found\n");
     return EXIT_FAILURE;
@@ -19,7 +19,6 @@ int main() {
   while (fgets(buf, maxnum, fp) && n < maxnum) {
     char *name;
     char *p;
-    char *e;
     buf[strlen(buf) - 1] = 0;
     name = strtok(buf, ",");
     p = strtok(NULL, ",");
@@ -31,15 +30,16 @@ int main() {
     strcpy(L[n].name,name); 
     n++;
   }
-  double value = 1000;
+  double norm = 1000;
   int step = 0;
-  while ((value = f_value(L,n,p))>5 && step < 10000)
+  while ( norm > 0.001 && step < 10000)
   {     
     //   printf("value = %f\n",value);
       double dela = f_gradient(L,n,p,del_a);
-    //   printf("%f\n",dela);
+      // printf("%f\n",dela);
       double delb = f_gradient(L,n,p,del_b);
-    //   printf("%f\n",delb);
+      // printf("%f\n",delb);
+      norm = sqrt(dela*dela + delb*delb);
       p.a -= p.alpha*dela;
       p.b -= p.alpha*delb;
     //   printf("a = %f, b = %f\n",p.a,p.b);
