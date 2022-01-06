@@ -1,7 +1,7 @@
 CC := gcc
 SRC := ./src
 LIB := ./lib
-OBJS = $(LIB)/paint.o $(LIB)/interpret.o $(LIB)/history.o $(LIB)/draw_screen.o $(LIB)/canvas.o
+OBJS = $(LIB)/paintapp.o $(LIB)/interpret.o $(LIB)/history.o $(LIB)/draw_screen.o $(LIB)/canvas.o
 INCLUDE := -I./include
 TARGETDIR := ./bin
 
